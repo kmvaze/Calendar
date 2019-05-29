@@ -15,9 +15,12 @@ import {
 } from 'react-bulma-components/full';
 import './App.css';
 
+import { Route, Link } from 'react-router-dom';
+
 import AppNavBar from './components/AppNavBar';
 import PravachanResults from './components/PravachanResults';
 import SearchInput from './components/SearchInput';
+import Pravachans from './containers/Pravachan.Container';
 
 import filterPravachans from './util/filterPravachans';
 
@@ -63,20 +66,18 @@ class App extends Component {
       <div className="App">
         <AppNavBar />
         <Section>
-          <Container>
-            <Heading size={3}>Swamiji Pravachans</Heading>
-            <SearchInput
-              searchTextChange={this.searchTextChange}
-              value={this.state.searchText}
-            />
-            <PravachanResults
-              pravachans={filterPravachans(
-                this.state.pravachans,
-                this.state.searchText,
-                20
-              )}
-            />
-          </Container>
+          <Route
+            exact
+            path="/"
+            component={function() {
+              return (
+                <div>
+                  <p>Home</p>
+                </div>
+              );
+            }}
+          />
+          <Route exact path="/pravachans/" component={Pravachans} />
         </Section>
       </div>
     );

@@ -32,6 +32,7 @@ function AppNavBar(props) {
         <Navbar.Container>
           <Navbar.Item href="#">Calendar</Navbar.Item>
           <Navbar.Item href="#">Photo Gallery</Navbar.Item>
+          <Navbar.Item href="/pravachans">Pravachans</Navbar.Item>
         </Navbar.Container>
       </Navbar.Menu>
     </Navbar>
