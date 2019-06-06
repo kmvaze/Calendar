@@ -15,14 +15,8 @@ import {
 } from 'react-bulma-components/full';
 import './App.css';
 
-import { Route, Link } from 'react-router-dom';
 
-import AppNavBar from './components/AppNavBar';
-import PravachanResults from './components/PravachanResults';
-import SearchInput from './components/SearchInput';
-import Pravachans from './containers/Pravachan.Container';
-
-import filterPravachans from './util/filterPravachans';
+import HomePage from './components/HomePage'
 
 class App extends Component {
   constructor(props) {
@@ -64,21 +58,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppNavBar />
-        <Section>
-          <Route
-            exact
-            path="/"
-            component={function() {
-              return (
-                <div>
-                  <p>Home</p>
-                </div>
-              );
-            }}
-          />
-          <Route exact path="/pravachans/" component={Pravachans} />
-        </Section>
+        <HomePage />
       </div>
     );
   }
