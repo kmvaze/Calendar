@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar } from 'react-bulma-components/full';
-
 import Notification from '../containers/Notification';
 
 function showHideMenu(props) {
@@ -28,14 +27,14 @@ function AppNavBar(props) {
       </div>
 
       <div id="MainMenu" className="navbar-menu">
-          <Navbar.Container>
-            <Navbar.Item href="#">Calendar</Navbar.Item>
-            <Navbar.Item href="#">Photo Gallery</Navbar.Item>
-            <Navbar.Item href="/pravachans">Pravachans</Navbar.Item>
+        <Navbar.Container>
+          <Navbar.Item href="#">Calendar</Navbar.Item>
+          <Navbar.Item href="#">Photo Gallery</Navbar.Item>
+          <Navbar.Item href="/pravachans">Pravachans</Navbar.Item>
             { 'Notification' in window && 'serviceWorker' in navigator ? 
               <Navbar.Item><Notification /></Navbar.Item> : null
             }
-          </Navbar.Container>
+        </Navbar.Container>
       </div>
     </nav>
   );

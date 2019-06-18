@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import urlBase64ToUint8Array from '../helpers/notification';
 
 class Notification extends Component {
+    state = {
+        userIsSubscribed: false
+    }
+
+    componentDidMount(){
+        //Check if user has already subscribed 
+    }
+
     requestPermission = () => {
+        var self = this;
         console.log('In request Permisiion');
          // Ask user if they provide permissions for showing notifications.
         // Browser does it through notifications api
@@ -41,6 +50,11 @@ class Notification extends Component {
                             body: JSON.stringify(createdSubscription)
                         })
                     }).then(function(response){
+                        console.log('Response', response);
+                        self.setState({
+                            userIsSubscribed: true
+                        })
+                        console.log(self.state.userIsSubscribed)
                         // Show successfully subscribed notification to user
                         if(response) {
                             var options = {
@@ -61,9 +75,8 @@ class Notification extends Component {
     
     
     render() {
-        return (
-            <p onClick={this.requestPermission}>Subscribe to Notifications</p>
-        );
+        let subscribeLink = !this.state.userIsSubscribed ? <p onClick={this.requestPermission}>Subscribe to Notifications</p> : null;
+        return <div>{subscribeLink}</div>
     }
 }
 
