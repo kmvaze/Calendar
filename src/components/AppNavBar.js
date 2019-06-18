@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Box,
-  Container,
-  Section,
-  Media,
-  Image,
-  Content,
-  Level,
-  Heading,
-  Form,
-  Icon,
-  Navbar
-} from 'react-bulma-components/full';
+import { Navbar } from 'react-bulma-components/full';
 
 import Notification from '../containers/Notification';
 
@@ -34,7 +21,7 @@ function AppNavBar(props) {
         <p className="navbar-item"><b>Menu</b></p>
         <a id="MenuButton" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false"
           data-target="MainMenu" onClick={showHideMenu}>
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true"> </span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>

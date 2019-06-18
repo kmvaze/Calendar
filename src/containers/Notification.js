@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import urlBase64ToUint8Array from '../helpers/notification';
-import AppNavBar from '../components/AppNavBar';
 
 class Notification extends Component {
-
     requestPermission = () => {
         console.log('In request Permisiion');
          // Ask user if they provide permissions for showing notifications.

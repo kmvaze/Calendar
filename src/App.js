@@ -1,54 +1,31 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Box,
-  Container,
-  Section,
-  Media,
-  Image,
-  Content,
-  Level,
-  Heading,
-  Form,
-  Icon,
-  Navbar
-} from 'react-bulma-components/full';
 import './App.css';
-
-
-import HomePage from './components/HomePage'
+import Layout from './components/Layout';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       isLoaded: true,
       pravachans: [],
-      searchText: ''
+      searchText: '',
+      error: null
     };
-    this.searchTextChange = this.searchTextChange.bind(this);
-  }
 
   componentDidMount() {
     fetch('http://localhost:8080/api/pravachans')
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            pravachans: result.data
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: false,
-            error
-          });
-        }
-      );
+      .then(res => {
+        this.setState({
+          isLoaded: true,
+          pravachans: res.json.data
+        });
+      }).catch(err => {
+        this.setState({
+          isLoaded: false,
+          error: err
+        });
+      })
   }
 
-  searchTextChange(event) {
+  searchTextChange = (event) => {
     console.log('In search TextChange ' + event.target.value);
     this.setState({
       searchText: event.target.value
@@ -58,7 +35,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HomePage />
+        <Layout />
       </div>
     );
   }

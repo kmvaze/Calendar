@@ -1,19 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Box,
-  Container,
-  Section,
-  Media,
-  Image,
-  Content,
-  Level,
-  Heading,
-  Form,
-  Icon,
-  Navbar
-} from 'react-bulma-components/full';
+import { Box, Form, Icon } from 'react-bulma-components/full';
 
 function SearchInput(props) {
   return (

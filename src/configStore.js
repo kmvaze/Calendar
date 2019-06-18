@@ -3,7 +3,6 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
 import { history } from './helpers/history';
-
 // Middlewares
 import pravachansReducer from './reducers/Pravachans.Reducer';
 
