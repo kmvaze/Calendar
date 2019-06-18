@@ -25,23 +25,24 @@ import filterPravachans from '../util/filterPravachans';
 
 function HomePage(props){
   return(
-    <div><AppNavBar/>
-    <Section>
-      <Route
-        exact
-        path="/"
-        component={function() {
-          return (
-            <container class="has-text-centered">
-              <div class="columns">
-                <div class="column is-one-third is-offset-one-third">
-                  <div class="content is-large"><h1>Sadhak Samwad</h1></div>
-                  <figure class="image">
+    <div>
+      <AppNavBar/>
+      <Section>
+        <Route
+          exact
+         path="/"
+          component={function() {
+            return (
+              <Container className="has-text-centered">
+              <div className="columns">
+                <div className="column is-one-third is-offset-one-third">
+                  <div className="content is-large"><h1>Sadhak Samwad</h1></div>
+                  <figure className="image">
                     <img alt="Kendra Logo" src={logo} />
                   </figure>
                 </div>
               </div>
-            </container>
+            </Container>
           );
         }}
       />
