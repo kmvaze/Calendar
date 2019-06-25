@@ -21,7 +21,8 @@ const isLocalhost = Boolean(
 );
 
 export function register(config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  console.log('In Service Worker Register');
+  if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
@@ -33,6 +34,7 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      console.log('Service Worked Loaded', swUrl);
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -51,6 +53,24 @@ export function register(config) {
         registerValidSW(swUrl, config);
       }
     });
+
+    // Listener on the service worker to listen to the push notification
+    window.addEventListener('push', (event) => {
+      // Initialize Notification popup data in case we do not get back title and description from event object 
+      let data = { title:'New notification', content: 'There is new notification'};
+  
+      if(event.data) {
+        data = JSON.parse(event.data.text());
+      }
+
+      const options = {
+        body : data.content
+      }
+
+      // Show the received notification
+      event.waitUntil(window.registration.showNotification(data.title, options));
+});
+
   }
 }
 

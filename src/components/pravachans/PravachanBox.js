@@ -1,17 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Button,
   Box,
-  Container,
-  Section,
   Media,
   Image,
   Content,
-  Level,
-  Heading,
-  Form,
-  Icon,
-  Navbar
+  Level
 } from 'react-bulma-components/full';
 
 import ReactAudioPlayer from 'react-audio-player';
