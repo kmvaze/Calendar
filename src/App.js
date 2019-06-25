@@ -1,41 +1,67 @@
-import React, { Component } from 'react';
-import './App.css';
-import Layout from './components/Layout';
+import React from "react";
+import Calendar from "./Components/Calendar";
+import Today from "./Components/Today";
+import events from "./Components/Programs";
+import "./App.css";
 
-class App extends Component {
-    state = {
-      isLoaded: true,
-      pravachans: [],
-      searchText: '',
-      error: null
-    };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    sDate: new Date(),
+    EventsKendra: events,
+    Today: [
+      {
+        id:1,
+        Date: '5/12/2019',
+        Program:'Sunday Pravachan - GP',
+        Type: "Regular"
+      },
+      {
+        id:2,
+        Date:'5/20/2019',
+        Program:'Bheti-Gathi - GP',
+        Type: "Regular"
+      },
+      {
+        id:3,
+        Date:'5/21/2019',
+        Program:'Wednesday Pravachan - GP',
+        Type: "Regular"
+      },
+      {
+        id:4,
+        Date:'6/12/2019',
+        Program:'Swami Makarandnath Vardhapandin - GP',
+        Type: "Special"
+      },
+      {
+        id:5,
+        Date:'5/26/2019',
+        Program:'Swami Makarandnath Vardhapandin - BG',
+        Type: "Special"
+      },
+    ]
+  }}
 
-  componentDidMount() {
-    fetch('http://localhost:8080/api/pravachans')
-      .then(res => {
-        this.setState({
-          isLoaded: true,
-          pravachans: res.json.data
-        });
-      }).catch(err => {
-        this.setState({
-          isLoaded: false,
-          error: err
-        });
-      })
+  
+  setCurrentDate =(selectedCalDate)=>{
+    this.setState({sDate:selectedCalDate});
   }
 
-  searchTextChange = (event) => {
-    console.log('In search TextChange ' + event.target.value);
-    this.setState({
-      searchText: event.target.value
-    });
+  setPrograms =(Today)=>{
+    this.setState({Today});
   }
-
+  
   render() {
+    const {sDate}=this.state;
     return (
       <div className="App">
-        <Layout />
+        <main>
+          <Calendar setCurrentDate={this.setCurrentDate} Today = {this.state.Today}/>
+        </main>
+        
+        <Today Today = {this.state.Today} Currdate = {sDate}/>
       </div>
     );
   }
