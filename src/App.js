@@ -1,84 +1,67 @@
-import React, { Component } from 'react';
-import {
-  Button,
-  Box,
-  Container,
-  Section,
-  Media,
-  Image,
-  Content,
-  Level,
-  Heading,
-  Form,
-  Icon,
-  Navbar
-} from 'react-bulma-components/full';
-import './App.css';
+import React from "react";
+import Calendar from "./Components/Calendar";
+import Today from "./Components/Today";
+import events from "./Components/Programs";
+import "./App.css";
 
-import { Route, Link } from 'react-router-dom';
-
-import AppNavBar from './components/AppNavBar';
-import PravachanResults from './components/PravachanResults';
-import SearchInput from './components/SearchInput';
-import Pravachans from './containers/Pravachan.Container';
-
-import filterPravachans from './util/filterPravachans';
-
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: true,
-      pravachans: [],
-      searchText: ''
-    };
-    this.searchTextChange = this.searchTextChange.bind(this);
+    sDate: new Date(),
+    EventsKendra: events,
+    Today: [
+      {
+        id:1,
+        Date: '5/12/2019',
+        Program:'Sunday Pravachan - GP',
+        Type: "Regular"
+      },
+      {
+        id:2,
+        Date:'5/20/2019',
+        Program:'Bheti-Gathi - GP',
+        Type: "Regular"
+      },
+      {
+        id:3,
+        Date:'5/21/2019',
+        Program:'Wednesday Pravachan - GP',
+        Type: "Regular"
+      },
+      {
+        id:4,
+        Date:'6/12/2019',
+        Program:'Swami Makarandnath Vardhapandin - GP',
+        Type: "Special"
+      },
+      {
+        id:5,
+        Date:'5/26/2019',
+        Program:'Swami Makarandnath Vardhapandin - BG',
+        Type: "Special"
+      },
+    ]
+  }}
+
+  
+  setCurrentDate =(selectedCalDate)=>{
+    this.setState({sDate:selectedCalDate});
   }
 
-  componentDidMount() {
-    fetch('http://localhost:8080/api/pravachans')
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            pravachans: result.data
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: false,
-            error
-          });
-        }
-      );
+  setPrograms =(Today)=>{
+    this.setState({Today});
   }
-
-  searchTextChange(event) {
-    console.log('In search TextChange ' + event.target.value);
-    this.setState({
-      searchText: event.target.value
-    });
-  }
-
+  
   render() {
+    const {sDate}=this.state;
     return (
       <div className="App">
-        <AppNavBar />
-        <Section>
-          <Route
-            exact
-            path="/"
-            component={function() {
-              return (
-                <div>
-                  <p>Home</p>
-                </div>
-              );
-            }}
-          />
-          <Route exact path="/pravachans/" component={Pravachans} />
-        </Section>
+        <main>
+          <Calendar setCurrentDate={this.setCurrentDate} Today = {this.state.Today}/>
+        </main>
+        
+        <Today Today = {this.state.Today} Currdate = {sDate}/>
       </div>
     );
   }
